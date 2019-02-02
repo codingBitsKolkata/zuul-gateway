@@ -16,6 +16,9 @@ zuul:
     hotel:
       path: /hotel/**
       serviceId: hotel-server
+    newsletter:
+      path: /newsletter/**
+      serviceId: newsletter-server
     add:
       path: /add/**
       serviceId: property-add-server
