@@ -52,7 +52,7 @@ server:
 
 spring:
   application:
-    name: zuul-service
+    name: zuul-gateway
 
 ## Increase the Hystrix timeout to 60s (for all)
 hystrix:
