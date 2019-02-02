@@ -1,0 +1,64 @@
+zuul:
+  #Service will be mapped under the /api URI
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: auth-server
+    banner:
+      path: /banner/**
+      serviceId: banner-server
+    booking:
+      path: /booking/**
+      serviceId: booking-server
+    flight:
+      path: /flight/**
+      serviceId: flight-server
+    hotel:
+      path: /hotel/**
+      serviceId: hotel-server
+    add:
+      path: /add/**
+      serviceId: property-add-server
+    list:
+      path: /list/**
+      serviceId: list-server
+    review:
+      path: /review/**
+      serviceId: review-server
+    testimonial:
+      path: /testimonial/**
+      serviceId: testimonial-server
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    #non-secure-port: 80
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+server:
+  port: 7093
+
+spring:
+  application:
+    name: zuul-service
+
+## Increase the Hystrix timeout to 60s (for all)
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon: 
+     ConnectTimeout: 3000
+     ReadTimeout: 60000
