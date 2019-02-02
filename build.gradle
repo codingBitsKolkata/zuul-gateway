@@ -14,8 +14,8 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
-group = 'com.gitathon.gateway'
-version = '1'
+group = 'com.orastays'
+//version = '1'
 sourceCompatibility = 1.8
 
 repositories {
@@ -26,10 +26,10 @@ repositories {
 task fatJar(type: Jar) {
 	manifest {
         attributes 'Implementation-Title': 'Zuul Gateway',  
-        	'Implementation-Version': version,
-        	'Main-Class': 'com.gitathon.gateway.zuulmicro.ZuulMicroApplication'
+        	//'Implementation-Version': version,
+        	'Main-Class': 'com.orastays.zuulgateway.ZuulMicroApplication'
     }
-    baseName = project.name + '-all'
+    baseName = project.name
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
