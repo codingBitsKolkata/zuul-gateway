@@ -1,4 +1,4 @@
-package com.gitathon.gateway.zuulmicro;
+package com.orastays.zuulgateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
