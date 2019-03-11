@@ -1,45 +1,64 @@
 zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+  ribbon:
+    eager-load:
+      enabled: true
   #Service will be mapped under the /api URI
   routes:
     auth:
-      path: /auth/**
+      path: /auth-server/**
       serviceId: auth-server
     banner:
-      path: /banner/**
+      path: /banner-server/**
       serviceId: banner-server
     booking:
-      path: /booking/**
+      path: /booking-server/**
       serviceId: booking-server
     flight:
-      path: /flight/**
+      path: /flight-server/**
       serviceId: flight-server
     hotel:
-      path: /hotel/**
+      path: /hotel-server/**
       serviceId: hotel-server
+    mail:
+      path: /mail-server/**
+      serviceId: mail-server
     newsletter:
-      path: /newsletter/**
+      path: /newsletter-server/**
       serviceId: newsletter-server
     add:
-      path: /add/**
+      path: /property-add-server/**
       serviceId: property-add-server
     list:
-      path: /list/**
-      serviceId: list-server
+      path: /property-list-server/**
+      serviceId: property-list-server
     review:
-      path: /review/**
+      path: /review-server/**
       serviceId: review-server
+    sms:
+      path: /sms-server/**
+      serviceId: sms-server
     testimonial:
-      path: /testimonial/**
+      path: /testimonial-server/**
       serviceId: testimonial-server
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultUrl: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+    initial-instance-info-replication-interval-seconds: 1
+    instance-info-replication-interval-seconds: 2
   instance:
     hostname: localhost
-    #non-secure-port: 80
-
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    
 endpoints:
   restart:
     enabled: true
@@ -60,8 +79,12 @@ hystrix:
     default:
       execution:
         isolation:
+          strategy: THREAD
           thread:
             timeoutInMilliseconds: 60000
-ribbon: 
-     ConnectTimeout: 3000
-     ReadTimeout: 60000
+     
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
