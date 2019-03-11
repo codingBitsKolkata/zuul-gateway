@@ -1,7 +1,7 @@
 zuul:
   host:
-    connect-timeout-millis: 60000
-    socket-timeout-millis: 60000
+    connect-timeout-millis: 600000
+    socket-timeout-millis: 600000
   ribbon:
     eager-load:
       enabled: true
@@ -81,10 +81,10 @@ hystrix:
         isolation:
           strategy: THREAD
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 600000
      
 ribbon:
   eureka:
     enabled: true
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
